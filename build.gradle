@@ -1,0 +1,15 @@
+task publishDocker {
+    doLast {
+        String minorVersion = version.substring(0, version.lastIndexOf("."))
+        exec {
+            commandLine "docker", "login", "-u", registryUser, "-p", registryPassword, registry
+        }
+        exec {
+            commandLine "docker", "build", "--pull", "-t" + registryImage,
+                    "-t" + (registryImage + ":" + version), "-t" + (registryImage + ":" + minorVersion), "."
+        }
+        exec {
+            commandLine "docker", "push", "--all-tags", registryImage
+        }
+    }
+}

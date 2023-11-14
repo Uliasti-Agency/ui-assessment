@@ -1,0 +1,18 @@
+@media only screen and (max-width: 1024px) {
+  /*******************************************
+    Header
+  *******************************************/
+  .header .brand.navbar-brand {
+    padding: 0;
+  }
+
+  .header .brand .logo {
+    padding: 0;
+  }
+
+  .uta-selectors.container {
+    flex-flow: row;
+
+  }
+
+}

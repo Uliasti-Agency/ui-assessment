@@ -1,0 +1,169 @@
+{
+  "main.header.logo.alt" : "Velox Logo",
+  "main.header.logoMobile.alt" : "Velox Logo-Mobil",
+
+  "main.header.navbar.home.label" : "Startseite",
+  "main.header.navbar.products.label" : "Produkte",
+  "main.header.navbar.orderUpload.label" : "Bestell-Upload",
+  "main.header.navbar.about.label" : "Über uns",
+
+  "main.header.navDropdown.orderUpload.label" : "Bestell-Upload",
+  "main.header.navDropdown.logout.label" : "Ausloggen",
+  "main.header.navDropdown.login.label" : "Anmeldung",
+
+  "main.footer.footer.impressum.label" : "Impressum",
+  "main.footer.footer.privacyPolicy.label" : "Datenschutz-Bestimmungen",
+  "main.footer.footer.termsOfService.label" : "Nutzungsbedingungen",
+  "main.footer.footer.tradeMark.label" : "Sly GmbH. Alle Rechte vorbehalten.",
+
+  "messages.messages.success" : "Erfolg",
+  "messages.messages.warning" : "Warnung",
+  "messages.messages.error" : "Fehler",
+
+  "utils.displayPricePLP.message.onRequest" : "Auf Anfrage",
+
+  "utils.displayAvailability.message.unknown" : "Unbekannt",
+  "utils.displayAvailability.message.atSupplier" : "beim Lieferanten",
+  "utils.displayAvailability.message.outOfStock" : "Ausverkauft",
+  "utils.displayAvailability.message.quantityInStock" : "auf Lager",
+  "utils.displayAvailability.message.inStock" : "Auf Lager",
+
+  "utils.serviceCallWrapper.error.message" : "Etwas ist schief gelaufen. Bitte versuche es erneut.",
+
+  "cart.cart.cartPageTitle" : "Wagen | VELOX",
+
+  "cart.cart.removeItem.messages.successMessageText" : "Artikel {{name}} wurde aus dem Warenkorb entfernt.",
+  "cart.cart.removeItem.messages.errorMessageText" : "Artikel {{name}} ist nicht im Warenkorb vorhanden!",
+
+  "cart.cart.decreaseItemQuantity.messages.serviceCallresult.200" : "Die Menge des Artikels {{name}} wird verringert.",
+  "cart.cart.decreaseItemQuantity.messages.serviceCallresult.404" : "Das zu aktualisierende Element {{name}} wurde nicht gefunden!",
+  "cart.cart.decreaseItemQuantity.messages.serviceCallresult.422" : "Erforderliche Daten zum Aktualisieren des Artikels {{name}} sind nicht vorhanden!",
+  "cart.cart.decreaseItemQuantity.messages.serviceCallresult.424" : "Nicht genügend Lagerbestand für den angegebenen Artikel {{name}}!",
+
+  "cart.cart.increaseItemQuantity.messages.serviceCallresult.200" : "Die Menge des Artikels {{name}} wird erhöht.",
+  "cart.cart.increaseItemQuantity.messages.serviceCallresult.404" : "Das zu aktualisierende Element {{name}} wurde nicht gefunden!",
+  "cart.cart.increaseItemQuantity.messages.serviceCallresult.422" : "Erforderliche Daten zum Aktualisieren des Artikels {{name}} sind nicht vorhanden!",
+  "cart.cart.increaseItemQuantity.messages.serviceCallresult.424" : "Nicht genügend Lagerbestand für den angegebenen Artikel {{name}}!",
+
+  "cart.cart.changeItemQuantity.messages.serviceCallresult.200" : "Die Menge des Artikels {{name}} wurde geändert.",
+  "cart.cart.changeItemQuantity.messages.serviceCallresult.404" : "Das zu aktualisierende Element {{name}} wurde nicht gefunden!",
+  "cart.cart.changeItemQuantity.messages.serviceCallresult.422" : "Erforderliche Daten zum Aktualisieren des Artikels {{name}} sind nicht vorhanden!",
+  "cart.cart.changeItemQuantity.messages.serviceCallresult.424" : "Nicht genügend Lagerbestand für den angegebenen Artikel {{name}}!",
+
+  "cart.cart.cartList.tableHeader.product.label" : "Produkt",
+  "cart.cart.cartList.tableHeader.articleNumber.label" : "Art.Nr.",
+  "cart.cart.cartList.tableHeader.availability.label" : "Verfügbarkeit",
+  "cart.cart.cartList.tableHeader.price.label" : "Preis",
+  "cart.cart.cartList.tableHeader.subtotal.label" : "Zwischensumme",
+
+  "cart.cart.cartSummary.header.label" : "Bestellübersicht",
+  "cart.cart.cartSummary.subtotal.label" : "Zwischensumme",
+  "cart.cart.cartSummary.shipping.label" : "Versand",
+  "cart.cart.cartSummary.tax.label" : "Steuer",
+  "cart.cart.cartSummary.total.label" : "Gesamt",
+  "cart.cart.cartSummary.checkoutButton.button" : "Zur Kasse",
+
+  "cart.cartItem.name.notSpecified.message" : "Unbestimmt",
+
+  "checkout.checkoutPageTitle" : "Kasse | VELOX",
+  "checkout.checkoutMain.checkoutMainTitle" : "Kasse",
+
+  "checkout.checkoutBody.checkoutForm.buttonMessage.value" : "Speichern",
+  "checkout.checkoutBody.popoverUnsuccess.title" : "Vielen Dank für Ihren Auftrag",
+  "checkout.checkoutBody.popoverUnsuccess.content" : "Ihre Bestellung wird bearbeitet",
+  "checkout.checkoutBody.popoverSuccess.title" : "Erfolg",
+  "checkout.checkoutBody.popoverSuccess.content" : "Ihre Bestellung wurde erfolgreich aufgegeben",
+  "checkout.checkoutBody.checkoutButton.button" : "Jetzt bestellen",
+  "checkout.checkoutBody.spinner.message" : "Auftragsdaten laden",
+
+  "checkout.confirmOrder.serviceCall.result.200" : "Bestellung wird aufgegeben.",
+  "checkout.confirmOrder.serviceCall.result.404" : "Bestellung nicht gefunden!",
+  "checkout.confirmOrder.serviceCall.result.403" : "Sie haben versucht, schreibgeschützte Parameter (z. B. einen Preis) zu ändern!",
+  "checkout.confirmOrder.serviceCall.result.412" : "Die Bestellung wurde nach Ihrer letzten Anfrage geändert. Bitte erneut bestellen!",
+  "checkout.confirmOrder.serviceCall.result.417" : "Bestellung konnte nicht aufgegeben werden. Bitte versuche es erneut!",
+  "checkout.confirmOrder.serviceCall.result.428" : "Bestellung konnte nicht aufgegeben werden. Bitte versuche es erneut!",
+  "checkout.confirmOrder.serviceCall.result.500" : "Bestätigungsmail konnte nicht versendet werden!",
+
+  "checkout.updateAddress.serviceCall.result.200" : "Adresse ist gespeichert.",
+  "checkout.updateAddress.serviceCall.result.404" : "Adresse nicht gefunden!",
+  "checkout.updateAddress.serviceCall.result.403" : "Sie haben versucht, schreibgeschützte Parameter zu ändern",
+  "checkout.updateAddress.serviceCall.result.412" : "Die Adresse wurde nach Ihrer letzten Anfrage geändert. Bitte erneut bestellen!",
+  "checkout.updateAddress.serviceCall.result.417" : "Adresse konnte nicht platziert werden. Bitte versuche es erneut!",
+  "checkout.updateAddress.serviceCall.result.428" : "Adresse konnte nicht platziert werden. Bitte versuche es erneut!",
+  "checkout.updateAddress.serviceCall.result.500" : "Bestätigungsmail konnte nicht versendet werden!",
+
+  "checkout.userAddress.userAddresses.billingAddressTitle" : "Rechnungsadresse",
+  "checkout.userAddress.userAddresses.editButton.button" : "Bearbeiten",
+  "checkout.userAddress.userAddresses.shipmentAddressTitle" : "Versandadresse",
+  "checkout.userAddress.userAddresses.shipmentAddress" : "Die Versandadresse ist gleich wie die Rechnungsadresse.",
+
+  "checkout.userForm.userForm.firstName" : "Vorname",
+  "checkout.userForm.userForm.lastName" : "Nachname",
+  "checkout.userForm.userForm.company" : "Firma",
+  "checkout.userForm.userForm.street" : "Strasse",
+  "checkout.userForm.userForm.number" : "Nummer",
+  "checkout.userForm.userForm.postcode" : "Postleitzahl",
+  "checkout.userForm.userForm.city" : "Stadt",
+  "checkout.userForm.userForm.country" : "Land",
+  "checkout.userForm.userForm.phone" : "Telefon",
+
+  "checkout.userAddress.shipmentOption.label" : "Versand",
+  "checkout.userAddress.shipmentOption.radioLabel.standard.label" : "Standard",
+  "checkout.userAddress.shipmentOption.radioLabel.standard.value" : "2-5 Arbeitstage",
+  "checkout.userAddress.shipmentOption.radioLabel.express.label" : "Express",
+  "checkout.userAddress.shipmentOption.radioLabel.express.value" : "1-2 Arbeitstage",
+  "checkout.userAddress.shipmentOption.radioLabel.pickup.label" : "Abholung",
+  "checkout.userAddress.shipmentOption.radioLabel.pickup.value" : "In unserem Büro",
+
+  "checkout.userAddress.paymentOption.label" : "Zahlung",
+  "checkout.userAddress.paymentOption.radioLabel.bankTransfer.label" : "Banküberweisung",
+  "checkout.userAddress.paymentOption.radioLabel.bankTransfer.value" : "+0% Zuschlag",
+  "checkout.userAddress.paymentOption.radioLabel.creditCard.label" : "Kreditkarte",
+  "checkout.userAddress.paymentOption.radioLabel.creditCard.value" : "+0% Zuschlag",
+  "checkout.userAddress.paymentOption.radioLabel.paypal.label" : "Paypal",
+  "checkout.userAddress.paymentOption.radioLabel.paypal.value" : "+2.5% Zuschlag",
+
+  "checkout.checkout.checkoutSummary.label" : "Bestellzusammenfassung",
+  "checkout.checkout.checkoutSummary.product" : "Produkt",
+  "checkout.checkout.checkoutSummary.quantity" : "Menge",
+  "checkout.checkout.checkoutSummary.availability" : "Verfügbarkeit",
+  "checkout.checkout.checkoutSummary.unitPrice" : "Stückpreis",
+  "checkout.checkout.checkoutSummary.subtotal" : "Zwischensumme",
+  "checkout.checkout.checkoutSummary.shipping" : "Versand",
+  "checkout.checkout.checkoutSummary.tax" : "Steuern",
+  "checkout.checkout.checkoutSummary.total" : "Gesamtsumme",
+  "checkout.checkout.checkoutSummary.policyText" : "Mit Ihrer Bestellung akzeptieren Sie unsere <a href=\"#\"className=\"textLinkDecoration\">allgemeinen Geschäftsbedingungen</a> und unsere <a href=\"#\" className=\"textLinkDecoration\">Datenschutzbestimmungen</a>.",
+
+  "digitalUpload.digitalUploadPageTitle" : "Digitaler Upload | VELOX",
+  "digitalUpload.digitalUpload.addItem.messages.ServiceCall.201" : "Artikel {{name}} wird dem Einkaufswagen hinzugefügt.",
+  "digitalUpload.digitalUpload.addItem.messages.ServiceCall.409" : "Artikel {{name}} ist bereits im Warenkorb!",
+
+  "home.home.homePageTitle" : "Heim | VELOX",
+  "home.home.header.message" : "Willkommen beim Headless E-Commerce der nächsten Generation",
+  "home.home.mainContent.message" : "Velox Shop ist eine kostenlose Open-Source-Referenzimplementierung eines Headless-Webshops mit Microservice-Architektur. Es zeigt, wie man die Herausforderungen angeht und welche Technologie benötigt wird, um Microservices zu bauen. Velox Shop ist weder ein Produkt noch ein Framework, sondern eine Bibliothek, die zeigt, wie Sie mit aktueller Technologie einen flexiblen und skalierbaren Webshop selbst aufbauen können.",
+
+  "productList.productListPageTitle" : "Produktliste | VELOX",
+
+  "productList.productList.bestsellers.title" : "Aktuelle Bestseller",
+
+  "productList.productList.tableHader.product.label" : "Produkt",
+  "productList.productList.tableHader.availability.label" : "Verfügbarkeit",
+  "productList.productList.tableHader.price.label" : "Preis",
+  "productList.productList.tableHader.buy.label" : "Kaufen",
+  "productList.productList.addItem.messages.ServiceCall.201" : "Artikel {{name}} wird dem Einkaufswagen hinzugefügt.",
+  "productList.productList.addItem.messages.ServiceCall.200" : "Artikel {{name}} wird dem Einkaufswagen hinzugefügt.",
+  "productList.productList.addItem.messages.ServiceCall.409" : "Artikel {{name}} ist bereits im Warenkorb!",
+  "productListItem.productListItem.addtoCart.label" : "In den Warenkorb legen",
+  "productListItem.productListItem.selectVarient.label" : "Variante wählen",
+  "productListItem.productListItem.price.label" : "Preis",
+  "productDetail.productDetail.addItem.messages.ServiceCall.201" : "Artikel {{name}} wird dem Einkaufswagen hinzugefügt.",
+  "productDetail.productDetail.addItem.messages.ServiceCall.409" : "Artikel {{name}} ist bereits im Warenkorb!",
+  "productDetailItem.productDetailItem.tableHeader.stock.label" : "Lager",
+  "productDetailItem.productDetailItem.tableHeader.addToCart.label" : "In den Warenkorb legen",
+  "productDetailItem.productDetailItem.tableHeader.artNr.label" : "Art.Nr.",
+  "productDetailItem.productDetailItem.tableHeader.price.label" : "Preis",
+
+  "confirmation.confirmation.thanks.title" : "Vielen Dank, wir haben Ihre Bestellung erhalten",
+  "confirmation.confirmation.email.sent.title" : "Eine Bestätigungs-E-Mail wurde an {{email}} gesendet.",
+  "confirmation.confirmation.continue.shopping.title" : "Mit dem Einkaufen fortfahren"
+}

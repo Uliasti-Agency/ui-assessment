@@ -1,0 +1,95 @@
+{
+  "name": "ui",
+  "private": true,
+  "dependencies": {
+    "@reduxjs/toolkit": "^1.8.1",
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.5.0",
+    "@testing-library/user-event": "^7.2.1",
+    "@types/jest": "^27.4.1",
+    "@types/js-cookie": "^3.0.2",
+    "@types/node": "^17.0.45",
+    "@types/react": "^18.0.7",
+    "@types/react-bootstrap": "^0.32.29",
+    "@types/react-dom": "^18.0.0",
+    "@types/react-redux": "^7.1.24",
+    "@types/react-router-dom": "^5.3.3",
+    "@types/react-gtm-module": "^2.0.1",
+    "@types/react-inner-image-zoom": "^3.0.0",
+    "axios": "^0.21.1",
+    "core-js": "^3.6.5",
+    "i18n-js": "^3.8.0",
+    "i18next": "^21.6.0",
+    "i18next-browser-languagedetector": "^6.1.2",
+    "react-i18next": "^11.14.3",
+    "js-cookie": "^3.0.1",
+    "js-sha256": "^0.9.0",
+    "oidc-react": "^1.1.6",
+    "random-hash": "^4.0.1",
+    "react": "^18.1.0",
+    "react-bootstrap": "^2.3.1",
+    "react-dom": "^18.1.0",
+    "react-gtm-module": "^2.0.11",
+    "react-inner-image-zoom": "^3.0.0",
+    "react-multi-carousel": "^2.6.5",
+    "react-redux": "^8.0.1",
+    "react-router-dom": "^5.1.2",
+    "react-scripts": "3.4.1",
+    "react-toastify": "^7.0.1",
+    "redux": "^4.2.0",
+    "redux-devtools-extension": "^2.13.9"
+  },
+  "scripts": {
+    "start": "chmod +x ./env.sh && ./env.sh && cp env-config.js ./public/ && PORT=3000 react-scripts start",
+    "preinstall": "for file in openapi/*.json; do target=`echo $file | sed 's/openapi\\/\\([^ ]*\\).json/\\1Api/'`; npx swagger-typescript-api -p $file -n \"$target.ts\" -o src/generated/api; done",
+    "test": "react-scripts test",
+    "build": "react-scripts build",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@semantic-release/exec": "^6.0.3",
+    "@semantic-release/git": "^10.0.1",
+    "semantic-release": "^19.0.2",
+    "typescript": "^3.8.3"
+  },
+  "release": {
+    "branches": [
+      {
+        "name": "master"
+      }
+    ],
+    "plugins": [
+      "@semantic-release/commit-analyzer",
+      "@semantic-release/npm",
+      [
+        "@semantic-release/exec",
+        {
+          "prepareCmd": "sed -E -i'' 's/version ?=.*/version = ${nextRelease.version}/' gradle.properties"
+        }
+      ],
+      [
+        "@semantic-release/git",
+        {
+          "assets": [
+            "gradle.properties"
+          ]
+        }
+      ]
+    ]
+  }
+}

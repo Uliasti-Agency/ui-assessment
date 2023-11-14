@@ -1,0 +1,33 @@
+version: '3.7'
+
+services:
+    ui:
+      restart: always
+      build: .
+      working_dir: /
+      volumes:
+        - ~/.m2:/root/.m2
+      expose:
+        - "3001"
+      ports:
+        - "3001:3001"
+      environment:
+        - "REACT_APP_UI_MAIN_FULL_URL=http://localhost:3000"
+        - "REACT_APP_UI_MAIN_URL=/"
+        - "REACT_APP_UI_CART_URL=/cart"
+        - "REACT_APP_UI_PRODUCT_LIST_URL=/product-list"
+        - "REACT_APP_UI_PRODUCT_DETAIL_URL=/product-description"
+        - "REACT_APP_UI_CHECKOUT_URL=/checkout"
+        - "REACT_APP_UI_ORDER_CONFIRMATION_URL=/order-confirmation"
+        - "REACT_APP_UI_ABOUT_URL=https://velox.swiss/"
+        - "REACT_APP_UI_DIGITAL_UPLOAD_URL=/digital-upload"
+        - "REACT_APP_DIGITAL_UPLOAD_PARSER_SERVICE_URL=https://connect.sly.swiss/upload-service/static/js/parser.js"
+        - "REACT_APP_CART_ORCHESTRATION_URL=http://localhost:8443/cart-orchestration/v1"
+        - "REACT_APP_CART_SERVICE_URL=http://localhost:8446/cart/v1"
+        - "REACT_APP_CHECKOUT_ORCHESTRATION_URL=http://localhost:8442/checkout-orchestration/v1"
+        - "REACT_APP_CATALOG_ORCHESTRATION_URL=http://localhost:8448/catalog-orchestration/v1"
+        - "REACT_APP_USER_ORCHESTRATION_URL=http://localhost:8451/user-orchestration/v1"
+        - "REACT_APP_PRICE_ORCHESTRATION_URL=http://localhost:8450/prices-orchestration/v1"
+        - "REACT_APP_RECOMMENDATION_ORCHESTRATION_URL=http://localhost:8453/recommendation-orchestration/v1"
+        - "REACT_APP_REDIRECT_URL=http://localhost:3000/implicit/callback"
+        - "REACT_APP_SLY_CONNECT_API_KEY="

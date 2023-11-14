@@ -1,0 +1,354 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Catalog Orchestration API",
+    "description": "This service provides Catalog functionality."
+  },
+  "servers": [
+    {
+      "url": "http://docker:8448/catalog-orchestration/v1",
+      "description": "Generated server url"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Catalog",
+      "description": "the Catalog API"
+    }
+  ],
+  "paths": {
+    "/catalogs": {
+      "get": {
+        "tags": [
+          "Catalog"
+        ],
+        "summary": "gets complete Catalog.",
+        "operationId": "getCatalog",
+        "parameters": [
+          {
+            "name": "currencyId",
+            "in": "query",
+            "description": "Return prices in catalog for the given currency ID.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CatalogDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/catalogs/{articleId}": {
+      "get": {
+        "tags": [
+          "Catalog"
+        ],
+        "summary": "gets article from Catalog.",
+        "operationId": "getArticle",
+        "parameters": [
+          {
+            "name": "articleId",
+            "in": "path",
+            "description": "Id of the Article. Cannot be empty",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "currencyId",
+            "in": "query",
+            "description": "Return prices for the given currency ID.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EnrichedProductEntity"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "article not found"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "AttributeValueObject": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Human-Readable unique identifier of the AttributeValue.",
+            "example": "black"
+          },
+          "name": {
+            "type": "object",
+            "description": "value of the AttributeValue.",
+            "example": "Black"
+          }
+        },
+        "description": "Actual values of the possible choiceAttributes defined at the Multi Variant Product level.",
+        "example": "[{id: red, name: Red}, {id: black, name: Black}]"
+      },
+      "AvailabilityDto": {
+        "required": [
+          "articleId"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique identifier of the Availability.",
+            "example": "5dc618af-af49-4adc-bccd-4d17aeff7526"
+          },
+          "articleId": {
+            "maxLength": 50,
+            "minLength": 3,
+            "type": "string",
+            "description": "Unique identifier of the article.",
+            "example": "123"
+          },
+          "quantity": {
+            "type": "number",
+            "description": "Non-negative available quantity of the article.",
+            "example": 10
+          },
+          "status": {
+            "type": "string",
+            "description": "Availability stock status of the article.",
+            "example": "IN_STOCK",
+            "enum": [
+              "ALWAYS_AVAILABLE",
+              "NOT_AVAILABLE",
+              "IN_STOCK"
+            ]
+          },
+          "replenishmentTime": {
+            "type": "integer",
+            "description": "Standard lead time in days for article quantity replenishment.",
+            "format": "int32",
+            "example": 14,
+            "default": 0
+          }
+        },
+        "description": "Availability of the product"
+      },
+      "CatalogDto": {
+        "required": [
+          "id"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique identifier of the Catalog.",
+            "example": "3a5q1rb8-149c-256q-468r-50qe138v50v9"
+          },
+          "items": {
+            "type": "array",
+            "description": "Catalog items.",
+            "items": {
+              "$ref": "#/components/schemas/EnrichedProductEntity"
+            }
+          }
+        }
+      },
+      "ChoiceAttributeObject": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Human-Readable unique identifier of the ChoiceAttribute.",
+            "example": "color"
+          },
+          "name": {
+            "type": "object",
+            "description": "name of the ChoiceAttribute.",
+            "example": "Color"
+          },
+          "values": {
+            "type": "array",
+            "description": "Actual values of the possible choiceAttributes defined at the Multi Variant Product level.",
+            "example": "[{id: red, name: Red}, {id: black, name: Black}]",
+            "items": {
+              "$ref": "#/components/schemas/AttributeValueObject"
+            }
+          }
+        },
+        "description": "Attributes that change between variants"
+      },
+      "CurrencyDto": {
+        "required": [
+          "isoCode",
+          "name",
+          "symbol"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Id of the currency.",
+            "example": "2e5c9ba8-956e-476b-816a-49ee128a40c9"
+          },
+          "isoCode": {
+            "type": "string",
+            "description": "IsoCode of the currency)"
+          },
+          "name": {
+            "type": "string",
+            "description": "Name of the currency"
+          },
+          "symbol": {
+            "type": "string",
+            "description": "Symbol of the Currency"
+          }
+        }
+      },
+      "EnrichedProductEntity": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique identifier of the Product.",
+            "example": "velox-shirt"
+          },
+          "name": {
+            "type": "string",
+            "description": "Name of the product.",
+            "example": "Velox Shirt"
+          },
+          "description": {
+            "type": "string",
+            "description": "Description of the product",
+            "example": "Very nice VELOX branded Polo-Shirt in size XL."
+          },
+          "longDescription": {
+            "type": "string",
+            "description": "Long description of the product",
+            "example": "Very nice VELOX branded Polo-Shirt in size XL made from cotton in various colours."
+          },
+          "images": {
+            "type": "array",
+            "description": "Images of the product",
+            "items": {
+              "$ref": "#/components/schemas/Image"
+            }
+          },
+          "choiceAttributes": {
+            "type": "array",
+            "description": "Attributes that change between variants",
+            "items": {
+              "$ref": "#/components/schemas/ChoiceAttributeObject"
+            }
+          },
+          "type": {
+            "type": "string",
+            "description": "Product Type",
+            "enum": [
+              "PRODUCT",
+              "VARIANT",
+              "MULTI_VARIANT_PRODUCT"
+            ]
+          },
+          "parentId": {
+            "type": "string",
+            "description": "Id of a parent MULTI_VARIANT_PRODUCT if a product type is VARIANT",
+            "example": "velox-polo-shirt"
+          },
+          "availability": {
+            "$ref": "#/components/schemas/AvailabilityDto"
+          },
+          "prices": {
+            "type": "array",
+            "description": "Prices of the product",
+            "items": {
+              "$ref": "#/components/schemas/PriceDto"
+            }
+          },
+          "orderable": {
+            "type": "boolean",
+            "description": "Information is product orderable"
+          }
+        }
+      },
+      "Image": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "description": "Image Type",
+            "enum": [
+              "GALLERY"
+            ]
+          },
+          "url": {
+            "type": "string",
+            "description": "URL of the image"
+          }
+        },
+        "description": "Images of the product"
+      },
+      "PriceDto": {
+        "required": [
+          "currency",
+          "unitPrice"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "articleId": {
+            "maxLength": 50,
+            "minLength": 3,
+            "type": "string"
+          },
+          "validFrom": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "validTo": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "minQuantity": {
+            "type": "number"
+          },
+          "unitPrice": {
+            "type": "number"
+          },
+          "active": {
+            "type": "boolean"
+          },
+          "currency": {
+            "$ref": "#/components/schemas/CurrencyDto"
+          }
+        },
+        "description": "Prices of the product"
+      }
+    }
+  }
+}

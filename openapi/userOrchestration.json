@@ -1,0 +1,233 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "User Orchestration API",
+    "description": "This service provides CRUD functionality for Users."
+  },
+  "servers": [
+    {
+      "url": "http://docker:8451/user-orchestration/v1",
+      "description": "Generated server url"
+    }
+  ],
+  "tags": [
+    {
+      "name": "User",
+      "description": "the User API"
+    }
+  ],
+  "paths": {
+    "/users/{id}": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Find User by code",
+        "operationId": "getUser",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Id of the User. Cannot be empty.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserDto"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "User not found"
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Updates an user",
+        "operationId": "updateUser",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Id of the User. Cannot be empty.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "User to update. Cannot be empty.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserDto"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "User not found"
+          },
+          "422": {
+            "description": "Mandatory data missing"
+          }
+        }
+      }
+    },
+    "/users": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Create new User",
+        "operationId": "createUser",
+        "requestBody": {
+          "description": "User to insert. Cannot be empty.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "User created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserDto"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "An user with given Id already exists"
+          },
+          "422": {
+            "description": "Mandatory data missing"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "AddressDto": {
+        "required": [
+          "address",
+          "city",
+          "company",
+          "country",
+          "firstName",
+          "lastName",
+          "zipCode"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique identifier of the Address.",
+            "example": "a6800895-9a37-4e48-a65a-621eea12d2d4"
+          },
+          "firstName": {
+            "type": "string",
+            "description": "First name of the recipient (user)"
+          },
+          "lastName": {
+            "type": "string",
+            "description": "Last name of the recipient (user)"
+          },
+          "company": {
+            "type": "string",
+            "description": "Company where the recipient (user) works"
+          },
+          "address": {
+            "type": "string",
+            "description": "Street where the orders will be shipped"
+          },
+          "city": {
+            "type": "string",
+            "description": "City where the orders will be shipped"
+          },
+          "zipCode": {
+            "type": "string",
+            "description": "Zip code of the address where the orders will be shipped"
+          },
+          "poBox": {
+            "type": "string",
+            "description": "Post Office Box of the company where the orders will be shipped"
+          },
+          "country": {
+            "type": "string",
+            "description": "Country where the orders will be shipped"
+          }
+        },
+        "description": "Address of the user where the orders will be shipped"
+      },
+      "UserDto": {
+        "required": [
+          "addressDto",
+          "email",
+          "firstName",
+          "id",
+          "lastName",
+          "phone"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique identifier of the user obtained from the Identity and Access Management provider"
+          },
+          "firstName": {
+            "type": "string",
+            "description": "First name of the user"
+          },
+          "lastName": {
+            "type": "string",
+            "description": "Last name of the user"
+          },
+          "phone": {
+            "type": "string",
+            "description": "Phone number of the user"
+          },
+          "email": {
+            "type": "string",
+            "description": "Email address of the user"
+          },
+          "addressDto": {
+            "$ref": "#/components/schemas/AddressDto"
+          }
+        }
+      }
+    }
+  }
+}

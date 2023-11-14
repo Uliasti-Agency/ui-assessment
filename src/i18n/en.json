@@ -1,0 +1,169 @@
+{
+  "main.header.logo.alt" : "Velox Logo",
+  "main.header.logoMobile.alt" : "Velox logo mobile",
+  
+  "main.header.navbar.home.label" : "Home",
+  "main.header.navbar.products.label" : "Products",
+  "main.header.navbar.orderUpload.label" : "Order Upload",
+
+  "main.header.navbar.about.label" : "About",
+
+  "main.header.navDropdown.orderUpload.label" : "Order Upload",
+  "main.header.navDropdown.logout.label" : "Logout",
+  "main.header.navDropdown.login.label" : "Login",
+
+  "main.footer.footer.impressum.label" : "Impressum",
+  "main.footer.footer.privacyPolicy.label" : "Privacy Policy",
+  "main.footer.footer.termsOfService.label" : "Terms of Service",
+  "main.footer.footer.tradeMark.label" : "Sly GmbH. All Rights Reserved.",
+
+  "messages.messages.success" : "Success",
+  "messages.messages.warning" : "Warning",
+  "messages.messages.error" : "Error",
+
+  "utils.displayPricePLP.message.onRequest" : "On request",
+  "utils.displayAvailability.message.unknown" : "Unknown",
+  "utils.displayAvailability.message.atSupplier" : "at Supplier",
+  "utils.displayAvailability.message.outOfStock" : "Out of Stock",
+  "utils.displayAvailability.message.quantityInStock" : "in Stock",
+  "utils.displayAvailability.message.inStock" : "In Stock",
+  
+  "utils.serviceCallWrapper.error.message" : "Something went wrong. Please try again.",
+
+  "cart.cart.cartPageTitle" : "Cart | VELOX",
+
+  "cart.cart.removeItem.messages.successMessageText" : "Item {{name}} is removed from the cart.",
+  "cart.cart.removeItem.messages.errorMessageText" : "Item {{name}} is not present in the cart!",
+
+  "cart.cart.decreaseItemQuantity.messages.serviceCallresult.200" : "Item {{name}} quantity is decreased.",
+  "cart.cart.decreaseItemQuantity.messages.serviceCallresult.404" : "Item {{name}} to be updated is not found!",
+  "cart.cart.decreaseItemQuantity.messages.serviceCallresult.422" : "Mandatory data to update the item {{name}} is not present!",
+  "cart.cart.decreaseItemQuantity.messages.serviceCallresult.424" : "Not enough stock for given item {{name}}!",
+
+  "cart.cart.increaseItemQuantity.messages.serviceCallresult.200" : "Item {{name}} quantity is increased.",
+  "cart.cart.increaseItemQuantity.messages.serviceCallresult.404" : "Item {{name}} to be updated is not found!",
+  "cart.cart.increaseItemQuantity.messages.serviceCallresult.422" : "Mandatory data to update the item {{name}} is not present!",
+  "cart.cart.increaseItemQuantity.messages.serviceCallresult.424" : "Not enough stock for given item {{name}}!",
+
+  "cart.cart.changeItemQuantity.messages.serviceCallresult.200" : "Item {{name}} quantity is changed.",
+  "cart.cart.changeItemQuantity.messages.serviceCallresult.404" : "Item {{name}} to be updated is not found!",
+  "cart.cart.changeItemQuantity.messages.serviceCallresult.422" : "Mandatory data to update the item {{name}} is not present!",
+  "cart.cart.changeItemQuantity.messages.serviceCallresult.424" : "Not enough stock for given item {{name}}!",
+
+  "cart.cart.cartList.tableHeader.product.label" : "Product",
+  "cart.cart.cartList.tableHeader.articleNumber.label" : "Art.Nr.",
+  "cart.cart.cartList.tableHeader.availability.label" : "Availability",
+  "cart.cart.cartList.tableHeader.price.label" : "Price",
+  "cart.cart.cartList.tableHeader.subtotal.label" : "Subtotal",
+
+  "cart.cart.cartSummary.header.label" : "Order Summary",
+  "cart.cart.cartSummary.subtotal.label" : "Subtotal",
+  "cart.cart.cartSummary.shipping.label" : "Shipping",
+  "cart.cart.cartSummary.tax.label" : "Tax",
+  "cart.cart.cartSummary.total.label" : "Total",
+  "cart.cart.cartSummary.checkoutButton.button" : "Proceed to Checkout",
+
+  "cart.cartItem.name.notSpecified.message" : "Not specified",
+
+  "checkout.checkoutPageTitle" : "Checkout | VELOX",
+  "checkout.checkoutMain.checkoutMainTitle" : "Checkout",
+
+  "checkout.checkoutBody.checkoutForm.buttonMessage.value" : "Save",
+  "checkout.checkoutBody.popoverUnsuccess.title" : "Thank you for your order",
+  "checkout.checkoutBody.popoverUnsuccess.content" : "Your order is being processed",
+  "checkout.checkoutBody.popoverSuccess.title" : "Success",
+  "checkout.checkoutBody.popoverSuccess.content" : "Your order was successfully placed",
+  "checkout.checkoutBody.checkoutButton.button" : "Order now",
+  "checkout.checkoutBody.spinner.message" : "Loading order data",
+
+  "checkout.confirmOrder.serviceCall.result.200" : "Order is placed.",
+  "checkout.confirmOrder.serviceCall.result.404" : "Order not found!",
+  "checkout.confirmOrder.serviceCall.result.403" : "You tried to change read-only parameters (e.g. a price)!",
+  "checkout.confirmOrder.serviceCall.result.412" : "Order was changed after your last request. Please place order again!",
+  "checkout.confirmOrder.serviceCall.result.417" : "Order could not be placed. Please try again!",
+  "checkout.confirmOrder.serviceCall.result.428" : "Order could not be placed. Please try again!",
+  "checkout.confirmOrder.serviceCall.result.500" : "Confirmation email could not be sent!",
+  
+  "checkout.updateAddress.serviceCall.result.200" : "Address is saved.",
+  "checkout.updateAddress.serviceCall.result.404" : "Address not found!",
+  "checkout.updateAddress.serviceCall.result.403" : "You tried to change read-only parameters",
+  "checkout.updateAddress.serviceCall.result.412" : "Address was changed after your last request. Please place order again!",
+  "checkout.updateAddress.serviceCall.result.417" : "Address could not be placed. Please try again!",
+  "checkout.updateAddress.serviceCall.result.428" : "Address could not be placed. Please try again!",
+  "checkout.updateAddress.serviceCall.result.500" : "Confirmation email could not be sent!",
+
+  "checkout.userAddress.userAddresses.billingAddressTitle" : "Billing Address",
+  "checkout.userAddress.userAddresses.editButton.button" : "Edit",
+  "checkout.userAddress.userAddresses.shipmentAddressTitle" : "Shipment Address",
+  "checkout.userAddress.userAddresses.shipmentAddress" : "Shipment address is the same as Billing address.",
+
+  "checkout.userForm.userForm.firstName" : "First Name",
+  "checkout.userForm.userForm.lastName" : "Last Name",
+  "checkout.userForm.userForm.company" : "Company",
+  "checkout.userForm.userForm.street" : "Street",
+  "checkout.userForm.userForm.number" : "Number",
+  "checkout.userForm.userForm.postcode" : "Postcode",
+  "checkout.userForm.userForm.city" : "City",
+  "checkout.userForm.userForm.country" : "Country",
+  "checkout.userForm.userForm.phone" : "Phone",
+
+  "checkout.userAddress.shipmentOption.label" : "Shipment",
+  "checkout.userAddress.shipmentOption.radioLabel.standard.label" : "Standard",
+  "checkout.userAddress.shipmentOption.radioLabel.standard.value" : "2-5 Working Days",
+  "checkout.userAddress.shipmentOption.radioLabel.express.label" : "Express",
+  "checkout.userAddress.shipmentOption.radioLabel.express.value" : "1-2 Working Days",
+  "checkout.userAddress.shipmentOption.radioLabel.pickup.label" : "Pickup",
+  "checkout.userAddress.shipmentOption.radioLabel.pickup.value" : "At our office",
+
+  "checkout.userAddress.paymentOption.label" : "Payment",
+  "checkout.userAddress.paymentOption.radioLabel.bankTransfer.label" : "Bank Transfer",
+  "checkout.userAddress.paymentOption.radioLabel.bankTransfer.value" : "+0% surcharge",
+  "checkout.userAddress.paymentOption.radioLabel.creditCard.label" : "Credit Card",
+  "checkout.userAddress.paymentOption.radioLabel.creditCard.value" : "+0% surcharge",
+  "checkout.userAddress.paymentOption.radioLabel.paypal.label" : "Paypal",
+  "checkout.userAddress.paymentOption.radioLabel.paypal.value" : "+2.5% surcharge",
+
+  "checkout.checkout.checkoutSummary.label" : "Order summary",
+  "checkout.checkout.checkoutSummary.product" : "Product",
+  "checkout.checkout.checkoutSummary.quantity" : "Quantity",
+  "checkout.checkout.checkoutSummary.availability" : "Availability",
+  "checkout.checkout.checkoutSummary.unitPrice" : "Unit price",
+  "checkout.checkout.checkoutSummary.subtotal" : "Subtotal",
+  "checkout.checkout.checkoutSummary.shipping" : "Shipping",
+  "checkout.checkout.checkoutSummary.tax" : "Tax",
+  "checkout.checkout.checkoutSummary.total" : "Total",
+  "checkout.checkout.checkoutSummary.policyText" : "With this order you accept our general <a href=\"#\"className=\"textLinkDecoration\">Terms and Conditions</a> as well as our <a href=\"#\" className=\"textLinkDecoration\">Privacy Policy</a>.",
+  "digitalUpload.digitalUploadPageTitle" : "Digital Upload | VELOX",
+  "digitalUpload.digitalUpload.addItem.messages.ServiceCall.201" : "Item {{name}} is added to the cart.",
+  "digitalUpload.digitalUpload.addItem.messages.ServiceCall.409" : "Item {{name}} is already in the cart!",
+
+  "home.home.homePageTitle" : "Home | VELOX",
+  "home.home.header.message" : "Welcome to the next-gen Headless E-commerce",
+  "home.home.mainContent.message" : "Velox shop is a free and open-source reference implementation of a headless web-shop using microservice architecture. It shows how to approach the challenges and what technology is needed to build microservices. Velox shop is not a product nor a framework, it is more a library which shows, how to use current technology to build a flexible and scalable web-shop on your own.",
+
+  "productList.productListPageTitle" : "Product List | VELOX",
+
+  "productList.productList.bestsellers.title" : "Current bestsellers",
+
+  "productList.productList.tableHader.product.label" : "Product",
+  "productList.productList.tableHader.availability.label" : "Availability",
+  "productList.productList.tableHader.price.label" : "Price",
+  "productList.productList.tableHader.buy.label" : "Buy",
+  "productList.productList.addItem.messages.ServiceCall.201" : "Item {{name}} is added to the cart.",
+  "productList.productList.addItem.messages.ServiceCall.200" : "Item {{name}} is added to the cart.",
+  "productList.productList.addItem.messages.ServiceCall.409" : "Item {{name}} is already in the cart!",
+  "productListItem.productListItem.addtoCart.label" : "Add to cart",
+  "productListItem.productListItem.selectVarient.label" : "Select variant",
+  "productListItem.productListItem.price.label" : "Price",
+  "productDetail.productDetail.addItem.messages.ServiceCall.201" : "Item {{name}} is added to the cart.",
+  "productDetail.productDetail.addItem.messages.ServiceCall.409" : "Item {{name}} is already in the cart!",
+  "productDetailItem.productDetailItem.tableHeader.stock.label" : "Stock",
+  "productDetailItem.productDetailItem.tableHeader.addToCart.label" : "Add to cart",
+  "productDetailItem.productDetailItem.tableHeader.artNr.label" : "Art.Nr.",
+  "productDetailItem.productDetailItem.tableHeader.price.label" : "Price",
+
+  "confirmation.confirmation.thanks.title" : "Thanks, we've received your order",
+  "confirmation.confirmation.email.sent.title" : "A confirmation email has been sent to {{email}}",
+  "confirmation.confirmation.continue.shopping.title" : "Continue Shopping"
+
+}

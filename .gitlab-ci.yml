@@ -1,0 +1,47 @@
+stages:
+  - build
+  - release
+  - publish
+
+services:
+  - docker:20-dind
+
+before_script:
+  - echo "Start CI/CD"
+
+release:
+  stage: release
+  only:
+    - master
+  image: node:17
+  variables:
+    GIT_STRATEGY: clone
+  before_script:
+    - ./setup_git.sh
+  script:
+    - npm install --legacy-peer-deps
+    - npx semantic-release
+  artifacts:
+    paths:
+      - gradle.properties
+    expire_in: 1 day
+
+publish-docker:
+  image: slyswiss/dockerjavaimage
+  services:
+    - docker:20.10-dind
+  variables:
+    DOCKER_TLS_CERTDIR: "/certs"
+  stage: publish
+  script:
+    - >
+      ./gradlew publishDocker
+      -PregistryUser="$CI_REGISTRY_USER"
+      -PregistryPassword="$CI_REGISTRY_PASSWORD"
+      -Pregistry=$CI_REGISTRY
+      -PregistryImage="$CI_REGISTRY_IMAGE"
+  only:
+    - master
+
+after_script:
+  - echo "End CI/CD"

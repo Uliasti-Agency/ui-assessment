@@ -1,0 +1,494 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "OpenAPI definition",
+    "version": "v0"
+  },
+  "servers": [
+    {
+      "url": "http://docker:8453/recommendation-orchestration/v1",
+      "description": "Generated server url"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Recommendation",
+      "description": "the Recommendation-Orchestration API"
+    }
+  ],
+  "paths": {
+    "/trackings": {
+      "post": {
+        "tags": [
+          "Recommendation"
+        ],
+        "summary": "Creates a Tracking Entry",
+        "operationId": "createTrackingEntry",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TrackingDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Tracking Entry created.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TrackingDto"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "TrackingDto is missing.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TrackingDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/trackings/orders/{orderId}": {
+      "post": {
+        "tags": [
+          "Recommendation"
+        ],
+        "summary": "Creates a Tracking Entries for articles in the order",
+        "operationId": "createTrackingEntriesForOrder",
+        "parameters": [
+          {
+            "name": "orderId",
+            "in": "path",
+            "description": "OrderId of the ordered articles for which the tracking entries should be created. Cannot be empty.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Tracking Entries created.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TrackingDto"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "OrderId is missing/order with specified orderId does not exist",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TrackingDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/recommendations/categories/{categoryId}": {
+      "get": {
+        "tags": [
+          "Recommendation"
+        ],
+        "summary": "gets Recommendation for category",
+        "description": "Paginated.",
+        "operationId": "getRecommendationForCategory",
+        "parameters": [
+          {
+            "name": "categoryId",
+            "in": "path",
+            "description": "Category of the recommended articles.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "length",
+            "in": "query",
+            "description": "Number of recommended articles in the recommendation. Can be empty. Default 3",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 3
+            }
+          },
+          {
+            "name": "currencyId",
+            "in": "query",
+            "description": "Currency of the recommended articles. Can be empty. If empty, returns prices for recommended articles in all available currencies.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RecommendationDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "TrackingDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique identifier of the TrackingLog.",
+            "example": "3b8r9df8-574e-694b-153a-66uu178j80i8"
+          },
+          "categoryId": {
+            "type": "string",
+            "description": "Unique identifier of the Category.",
+            "example": "12334"
+          },
+          "articleId": {
+            "type": "string",
+            "description": "Unique identifier of the Article.",
+            "example": "2e5c9ba8-956e-476b-816a-49ee128a40c9"
+          },
+          "userId": {
+            "type": "string",
+            "description": "Unique identifier of the User.",
+            "example": "test@test.ch"
+          },
+          "searchTerm": {
+            "type": "string",
+            "description": "Unique identifier of the Search Term.",
+            "example": "notebook"
+          },
+          "action": {
+            "type": "string",
+            "description": "Unique identifier of the action.",
+            "example": "click"
+          },
+          "cartId": {
+            "type": "string",
+            "description": "Unique identifier of the cart.",
+            "example": "4b7e6hjA-107b-476b-816a-51hh256a30d1"
+          },
+          "orderId": {
+            "type": "string",
+            "description": "Unique identifier of the order.",
+            "example": "7c8q8deA-217o-649b-517u-61rr576a68d6"
+          },
+          "geoLocation": {
+            "type": "string",
+            "description": "Geolocation where the tracking event was performed.",
+            "example": "current location"
+          },
+          "actionTimestamp": {
+            "type": "string",
+            "description": "Timestamp when the tracking event occurred.",
+            "format": "date-time"
+          },
+          "sessionId": {
+            "type": "string",
+            "description": "Unique identifier of the sessionId.",
+            "example": "1B5CABCD3HUY49PJDF346798A9GGK77E9"
+          },
+          "quantity": {
+            "type": "number",
+            "description": "Quantity of the ordered articled (used in conjuction with order action).",
+            "example": 23
+          },
+          "brand": {
+            "type": "string",
+            "description": "Brand of the article.",
+            "example": "VELOX"
+          }
+        }
+      },
+      "AttributeValueObject": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Human-Readable unique identifier of the AttributeValue.",
+            "example": "black"
+          },
+          "name": {
+            "type": "object",
+            "description": "value of the AttributeValue.",
+            "example": "Black"
+          }
+        },
+        "description": "Actual values of the possible choiceAttributes defined at the Multi Variant Product level.",
+        "example": "[{id: red, name: Red}, {id: black, name: Black}]"
+      },
+      "AvailabilityDto": {
+        "required": [
+          "articleId"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique identifier of the Availability.",
+            "example": "5dc618af-af49-4adc-bccd-4d17aeff7526"
+          },
+          "articleId": {
+            "maxLength": 50,
+            "minLength": 3,
+            "type": "string",
+            "description": "Unique identifier of the article.",
+            "example": "123"
+          },
+          "quantity": {
+            "type": "number",
+            "description": "Non-negative available quantity of the article.",
+            "example": 10
+          },
+          "status": {
+            "type": "string",
+            "description": "Availability stock status of the article.",
+            "example": "IN_STOCK",
+            "enum": [
+              "ALWAYS_AVAILABLE",
+              "NOT_AVAILABLE",
+              "IN_STOCK"
+            ]
+          },
+          "replenishmentTime": {
+            "type": "integer",
+            "description": "Standard lead time in days for article quantity replenishment.",
+            "format": "int32",
+            "example": 14,
+            "default": 0
+          }
+        },
+        "description": "Availability of the product"
+      },
+      "ChoiceAttributeObject": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Human-Readable unique identifier of the ChoiceAttribute.",
+            "example": "color"
+          },
+          "name": {
+            "type": "object",
+            "description": "name of the ChoiceAttribute.",
+            "example": "Color"
+          },
+          "values": {
+            "type": "array",
+            "description": "Actual values of the possible choiceAttributes defined at the Multi Variant Product level.",
+            "example": "[{id: red, name: Red}, {id: black, name: Black}]",
+            "items": {
+              "$ref": "#/components/schemas/AttributeValueObject"
+            }
+          }
+        },
+        "description": "Attributes that change between variants"
+      },
+      "CurrencyDto": {
+        "required": [
+          "isoCode",
+          "name",
+          "symbol"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Id of the currency.",
+            "example": "2e5c9ba8-956e-476b-816a-49ee128a40c9"
+          },
+          "isoCode": {
+            "type": "string",
+            "description": "IsoCode of the currency)"
+          },
+          "name": {
+            "type": "string",
+            "description": "Name of the currency"
+          },
+          "symbol": {
+            "type": "string",
+            "description": "Symbol of the Currency"
+          }
+        }
+      },
+      "EnrichedProductEntity": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique identifier of the Product.",
+            "example": "velox-shirt"
+          },
+          "name": {
+            "type": "string",
+            "description": "Name of the product.",
+            "example": "Velox Shirt"
+          },
+          "description": {
+            "type": "string",
+            "description": "Description of the product",
+            "example": "Very nice VELOX branded Polo-Shirt in size XL."
+          },
+          "longDescription": {
+            "type": "string",
+            "description": "Long description of the product",
+            "example": "Very nice VELOX branded Polo-Shirt in size XL made from cotton in various colours."
+          },
+          "images": {
+            "type": "array",
+            "description": "Images of the product",
+            "items": {
+              "$ref": "#/components/schemas/Image"
+            }
+          },
+          "choiceAttributes": {
+            "type": "array",
+            "description": "Attributes that change between variants",
+            "items": {
+              "$ref": "#/components/schemas/ChoiceAttributeObject"
+            }
+          },
+          "type": {
+            "type": "string",
+            "description": "Product Type",
+            "enum": [
+              "PRODUCT",
+              "VARIANT",
+              "MULTI_VARIANT_PRODUCT"
+            ]
+          },
+          "parentId": {
+            "type": "string",
+            "description": "Id of a parent MULTI_VARIANT_PRODUCT if a product type is VARIANT",
+            "example": "velox-polo-shirt"
+          },
+          "availability": {
+            "$ref": "#/components/schemas/AvailabilityDto"
+          },
+          "prices": {
+            "type": "array",
+            "description": "Prices of the product",
+            "items": {
+              "$ref": "#/components/schemas/PriceDto"
+            }
+          },
+          "orderable": {
+            "type": "boolean",
+            "description": "Information is product orderable"
+          }
+        },
+        "description": "List of the Recommended Items with details (name, quantity, price, availability, ...)",
+        "example": "[{id: 2e5c9ba8-956e-476b-816a-49ee128a40c9, name: 'example-article, availability: {...}, ... }, {...}]"
+      },
+      "Image": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "description": "Image Type",
+            "enum": [
+              "GALLERY"
+            ]
+          },
+          "url": {
+            "type": "string",
+            "description": "URL of the image"
+          }
+        },
+        "description": "Images of the product"
+      },
+      "PriceDto": {
+        "required": [
+          "currency",
+          "unitPrice"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "articleId": {
+            "maxLength": 50,
+            "minLength": 3,
+            "type": "string"
+          },
+          "validFrom": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "validTo": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "minQuantity": {
+            "type": "number"
+          },
+          "unitPrice": {
+            "type": "number"
+          },
+          "active": {
+            "type": "boolean"
+          },
+          "currency": {
+            "$ref": "#/components/schemas/CurrencyDto"
+          }
+        },
+        "description": "Prices of the product"
+      },
+      "RecommendationDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique identifier of the Recommendation.",
+            "example": "3b228r9df8-574e-694b-153a-66uu178j80i8"
+          },
+          "categoryId": {
+            "type": "string",
+            "description": "Unique identifier of the Category.",
+            "example": "001"
+          },
+          "articles": {
+            "type": "array",
+            "description": "List of the Recommended Items with details (name, quantity, price, availability, ...)",
+            "example": "[{id: 2e5c9ba8-956e-476b-816a-49ee128a40c9, name: 'example-article, availability: {...}, ... }, {...}]",
+            "items": {
+              "$ref": "#/components/schemas/EnrichedProductEntity"
+            }
+          },
+          "recommendationTimestamp": {
+            "type": "string",
+            "description": "Timestamp when the recommendation was generated.",
+            "format": "date-time"
+          }
+        }
+      }
+    }
+  }
+}

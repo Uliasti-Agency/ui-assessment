@@ -1,0 +1,574 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "OpenAPI definition",
+    "version": "v0"
+  },
+  "servers": [
+    {
+      "url": "http://docker:8454/catalog/v1",
+      "description": "Generated server url"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Catalog",
+      "description": "the Catalog API"
+    }
+  ],
+  "paths": {
+    "/catalogs": {
+      "get": {
+        "tags": [
+          "Catalog Repository"
+        ],
+        "description": "get-catalogentity",
+        "operationId": "getCollectionResource-catalogentity-get_1",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Zero-based page index (0..N)",
+            "required": false,
+            "schema": {
+              "minimum": 0,
+              "type": "integer",
+              "default": 0
+            }
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "description": "The size of the page to be returned",
+            "required": false,
+            "schema": {
+              "minimum": 1,
+              "type": "integer",
+              "default": 20
+            }
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "description": "Sorting criteria in the format: property(,asc|desc). Default sort order is ascending. Multiple sort criteria are supported.",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PagedModelEntityModelCatalogEntity"
+                }
+              },
+              "application/x-spring-data-compact+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PagedModelEntityModelCatalogEntity"
+                }
+              },
+              "text/uri-list": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/catalogs/{id}": {
+      "get": {
+        "tags": [
+          "Catalog Repository"
+        ],
+        "description": "get-catalogentity",
+        "operationId": "getItemResource-catalogentity-get",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EntityModelCatalogEntity"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/products": {
+      "get": {
+        "tags": [
+          "Product Repository"
+        ],
+        "description": "get-productentity",
+        "operationId": "getCollectionResource-productentity-get_1",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Zero-based page index (0..N)",
+            "required": false,
+            "schema": {
+              "minimum": 0,
+              "type": "integer",
+              "default": 0
+            }
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "description": "The size of the page to be returned",
+            "required": false,
+            "schema": {
+              "minimum": 1,
+              "type": "integer",
+              "default": 20
+            }
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "description": "Sorting criteria in the format: property(,asc|desc). Default sort order is ascending. Multiple sort criteria are supported.",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PagedModelEntityModelProductEntity"
+                }
+              },
+              "application/x-spring-data-compact+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PagedModelEntityModelProductEntity"
+                }
+              },
+              "text/uri-list": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/products/{id}": {
+      "get": {
+        "tags": [
+          "Product Repository"
+        ],
+        "description": "get-productentity",
+        "operationId": "getItemResource-productentity-get",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EntityModelProductEntity"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/profile": {
+      "get": {
+        "tags": [
+          "profile-controller"
+        ],
+        "operationId": "listAllFormsOfMetadata_1",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RepresentationModelObject"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/profile/catalogs": {
+      "get": {
+        "tags": [
+          "profile-controller"
+        ],
+        "operationId": "descriptor_1_1_1",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/alps+json": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/schema+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JsonSchema"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/profile/products": {
+      "get": {
+        "tags": [
+          "profile-controller"
+        ],
+        "operationId": "descriptor_1_1_2",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/alps+json": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/schema+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JsonSchema"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/reloadProducts": {
+      "post": {
+        "tags": [
+          "Catalog"
+        ],
+        "summary": "reloads catalog data from json File",
+        "operationId": "reloadProducts",
+        "responses": {
+          "201": {
+            "description": "successful operation"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "JsonSchema": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "requiredProperties": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "type": {
+            "type": "string"
+          },
+          "$schema": {
+            "type": "string"
+          }
+        }
+      },
+      "Links": {
+        "type": "object",
+        "additionalProperties": {
+          "$ref": "#/components/schemas/Link"
+        }
+      },
+      "RepresentationModelObject": {
+        "type": "object",
+        "properties": {
+          "_links": {
+            "$ref": "#/components/schemas/Links"
+          }
+        }
+      },
+      "EntityModelCatalogEntity": {
+        "type": "object",
+        "properties": {
+          "_links": {
+            "$ref": "#/components/schemas/Links"
+          }
+        }
+      },
+      "PageMetadata": {
+        "type": "object",
+        "properties": {
+          "size": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "totalElements": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "totalPages": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "number": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      },
+      "PagedModelEntityModelCatalogEntity": {
+        "type": "object",
+        "properties": {
+          "_embedded": {
+            "type": "object",
+            "properties": {
+              "catalogs": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/EntityModelCatalogEntity"
+                }
+              }
+            }
+          },
+          "_links": {
+            "$ref": "#/components/schemas/Links"
+          },
+          "page": {
+            "$ref": "#/components/schemas/PageMetadata"
+          }
+        }
+      },
+      "AttributeValueObject": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Human-Readable unique identifier of the AttributeValue.",
+            "example": "black"
+          },
+          "name": {
+            "type": "object",
+            "description": "value of the AttributeValue.",
+            "example": "Black"
+          }
+        },
+        "description": "Actual values of the possible choiceAttributes defined at the Multi Variant Product level.",
+        "example": "[{id: red, name: Red}, {id: black, name: Black}]"
+      },
+      "ChoiceAttributeObject": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Human-Readable unique identifier of the ChoiceAttribute.",
+            "example": "color"
+          },
+          "name": {
+            "type": "object",
+            "description": "name of the ChoiceAttribute.",
+            "example": "Color"
+          },
+          "values": {
+            "type": "array",
+            "description": "Actual values of the possible choiceAttributes defined at the Multi Variant Product level.",
+            "example": "[{id: red, name: Red}, {id: black, name: Black}]",
+            "items": {
+              "$ref": "#/components/schemas/AttributeValueObject"
+            }
+          }
+        },
+        "description": "Attributes that change between variants"
+      },
+      "EntityModelProductEntity": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique identifier of the Product.",
+            "example": "velox-shirt"
+          },
+          "name": {
+            "type": "string",
+            "description": "Name of the product.",
+            "example": "Velox Shirt"
+          },
+          "description": {
+            "type": "string",
+            "description": "Description of the product",
+            "example": "Very nice VELOX branded Polo-Shirt in size XL."
+          },
+          "longDescription": {
+            "type": "string",
+            "description": "Long description of the product",
+            "example": "Very nice VELOX branded Polo-Shirt in size XL made from cotton in various colours."
+          },
+          "images": {
+            "type": "array",
+            "description": "Images of the product",
+            "items": {
+              "$ref": "#/components/schemas/Image"
+            }
+          },
+          "choiceAttributes": {
+            "type": "array",
+            "description": "Attributes that change between variants",
+            "items": {
+              "$ref": "#/components/schemas/ChoiceAttributeObject"
+            }
+          },
+          "type": {
+            "type": "string",
+            "description": "Product Type",
+            "enum": [
+              "PRODUCT",
+              "VARIANT",
+              "MULTI_VARIANT_PRODUCT"
+            ]
+          },
+          "parentId": {
+            "type": "string",
+            "description": "Id of a parent MULTI_VARIANT_PRODUCT if a product type is VARIANT",
+            "example": "velox-polo-shirt"
+          },
+          "_links": {
+            "$ref": "#/components/schemas/Links"
+          }
+        }
+      },
+      "Image": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "description": "Image Type",
+            "enum": [
+              "GALLERY"
+            ]
+          },
+          "url": {
+            "type": "string",
+            "description": "URL of the image"
+          }
+        },
+        "description": "Images of the product"
+      },
+      "PagedModelEntityModelProductEntity": {
+        "type": "object",
+        "properties": {
+          "_embedded": {
+            "type": "object",
+            "properties": {
+              "products": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/EntityModelProductEntity"
+                }
+              }
+            }
+          },
+          "_links": {
+            "$ref": "#/components/schemas/Links"
+          },
+          "page": {
+            "$ref": "#/components/schemas/PageMetadata"
+          }
+        }
+      },
+      "Link": {
+        "type": "object",
+        "properties": {
+          "href": {
+            "type": "string"
+          },
+          "hreflang": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "deprecation": {
+            "type": "string"
+          },
+          "profile": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "templated": {
+            "type": "boolean"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,803 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Cart Orchestration API",
+    "description": "This service provides CRUD functionality for Carts."
+  },
+  "servers": [
+    {
+      "url": "http://docker:8443/cart-orchestration/v1",
+      "description": "Generated server url"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Cart",
+      "description": "the Cart API"
+    },
+    {
+      "name": "Item",
+      "description": "the Item API"
+    }
+  ],
+  "paths": {
+    "/carts": {
+      "get": {
+        "tags": [
+          "Cart"
+        ],
+        "summary": "gets all carts. Paginated.",
+        "operationId": "getCarts",
+        "parameters": [
+          {
+            "name": "pageable",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/Pageable"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CartDto"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Cart"
+        ],
+        "summary": "create new Cart",
+        "operationId": "createCart",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CartDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Cart created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CartDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/carts/{id}/items": {
+      "post": {
+        "tags": [
+          "Item"
+        ],
+        "summary": "Adds an item to the cart",
+        "operationId": "addItem",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Id of the Cart. Cannot be empty.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "refresh",
+            "in": "query",
+            "description": "Return cart with updated content or not. If refresh is empty list, all updated content of cart will be returned, otherwise the current state of the cart",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "default": []
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ItemDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Item Created",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/CartDto"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "cart not found"
+          },
+          "409": {
+            "description": "an item with given articleId already exists"
+          },
+          "422": {
+            "description": "No price exists for given article"
+          },
+          "424": {
+            "description": "not enough stock for given article"
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "Item"
+        ],
+        "summary": "Updates an item in the cart",
+        "operationId": "updateItem",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Id of the Cart. Cannot be empty.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ItemDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/CartDto"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "item not found"
+          },
+          "422": {
+            "description": "Mandatory data missing"
+          },
+          "424": {
+            "description": "not enough stock for given article"
+          }
+        }
+      }
+    },
+    "/carts/{id}": {
+      "get": {
+        "tags": [
+          "Cart"
+        ],
+        "summary": "Find Cart by code",
+        "operationId": "getCart",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Id of the Cart. Cannot be empty.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "userId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "refresh",
+            "in": "query",
+            "description": "Return cart with updated content or not. If refresh is empty list, all updated content of cart will be returned, otherwise the current state of the cart",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "default": []
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CartDto"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "cart does not exist or belongs to other user"
+          },
+          "404": {
+            "description": "cart not found"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Cart"
+        ],
+        "summary": "Delete Cart by code",
+        "operationId": "removeCart",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Id of the Cart. Cannot be empty.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "successful operation",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/MonoResponseEntityVoid"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "cart does not exist or belongs to other user",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/MonoResponseEntityVoid"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "cart not found (if invoked by admin)",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/MonoResponseEntityVoid"
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "Cart"
+        ],
+        "summary": "Update cart",
+        "operationId": "updateCart",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Id of the Cart. Cannot be empty.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "cart": {
+                    "$ref": "#/components/schemas/CartDto"
+                  },
+                  "userId": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Cart updated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CartDto"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Not allowed to update the cart",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MonoResponseEntityCartDto"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Cart for the given cart ID not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MonoResponseEntityCartDto"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Cart can't be updated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MonoResponseEntityCartDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/carts/{id}/items/{itemId}": {
+      "get": {
+        "tags": [
+          "Item"
+        ],
+        "summary": "Gets an item by cartId and itemId",
+        "operationId": "getItem",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Id of the Cart. Cannot be empty.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "itemId",
+            "in": "path",
+            "description": "Id of the item. Cannot be empty.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "refresh",
+            "in": "query",
+            "description": "Return item with updated content or not. If refresh is empty list, all updated content of item will be returned, otherwise the current state of the item",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "default": []
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ItemDto"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "item not found"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Item"
+        ],
+        "summary": "Removes an item from the cart",
+        "operationId": "removeItem",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Id of the Cart. Cannot be empty.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "itemId",
+            "in": "path",
+            "description": "Id of the item. Cannot be empty.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/CartDto"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "item not found"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "AttributeValueObject": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Human-Readable unique identifier of the AttributeValue.",
+            "example": "black"
+          },
+          "name": {
+            "type": "object",
+            "description": "value of the AttributeValue.",
+            "example": "Black"
+          }
+        },
+        "description": "Actual values of the possible choiceAttributes defined at the Multi Variant Product level.",
+        "example": "[{id: red, name: Red}, {id: black, name: Black}]"
+      },
+      "AvailabilityDto": {
+        "required": [
+          "articleId"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique identifier of the Availability.",
+            "example": "5dc618af-af49-4adc-bccd-4d17aeff7526"
+          },
+          "articleId": {
+            "maxLength": 50,
+            "minLength": 3,
+            "type": "string",
+            "description": "Unique identifier of the article.",
+            "example": "123"
+          },
+          "quantity": {
+            "type": "number",
+            "description": "Non-negative available quantity of the article.",
+            "example": 10
+          },
+          "status": {
+            "type": "string",
+            "description": "Availability stock status of the article.",
+            "example": "IN_STOCK",
+            "enum": [
+              "ALWAYS_AVAILABLE",
+              "NOT_AVAILABLE",
+              "IN_STOCK"
+            ]
+          },
+          "replenishmentTime": {
+            "type": "integer",
+            "description": "Standard lead time in days for article quantity replenishment.",
+            "format": "int32",
+            "example": 14,
+            "default": 0
+          }
+        },
+        "description": "Availability of the Item.",
+        "example": 100
+      },
+      "CartDto": {
+        "required": [
+          "currencyId"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique identifier of the Cart.",
+            "example": "4b7e6hjA-107b-476b-816a-51hh256a30d1"
+          },
+          "userId": {
+            "type": "string",
+            "description": "Unique identifier of the User.",
+            "example": "4b7e6hjA-107b-476b-816a-51hh256a30d1"
+          },
+          "items": {
+            "type": "array",
+            "description": "List of the Items in the Cart.",
+            "items": {
+              "$ref": "#/components/schemas/ItemDto"
+            }
+          },
+          "total": {
+            "type": "number",
+            "description": "Total value of all Items in the Cart.",
+            "example": 1050.75
+          },
+          "orderable": {
+            "type": "boolean",
+            "description": "Indicates whether all content in the Cart can be ordered and proceeded to checkout",
+            "example": true
+          },
+          "currencyId": {
+            "type": "string",
+            "description": "The currency of the cart.",
+            "example": "25dbb90c-04c5-4073-a972-b3381745c951"
+          },
+          "messages": {
+            "type": "array",
+            "description": "The messages on the cart.",
+            "example": "{level=ERROR, message=Certain items in the cart cannot be ordered}",
+            "items": {
+              "$ref": "#/components/schemas/MessageDto"
+            }
+          }
+        }
+      },
+      "ChoiceAttributeObject": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Human-Readable unique identifier of the ChoiceAttribute.",
+            "example": "color"
+          },
+          "name": {
+            "type": "object",
+            "description": "name of the ChoiceAttribute.",
+            "example": "Color"
+          },
+          "values": {
+            "type": "array",
+            "description": "Actual values of the possible choiceAttributes defined at the Multi Variant Product level.",
+            "example": "[{id: red, name: Red}, {id: black, name: Black}]",
+            "items": {
+              "$ref": "#/components/schemas/AttributeValueObject"
+            }
+          }
+        },
+        "description": "Attributes that change between variants"
+      },
+      "Image": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "description": "Image Type",
+            "enum": [
+              "GALLERY"
+            ]
+          },
+          "url": {
+            "type": "string",
+            "description": "URL of the image"
+          }
+        },
+        "description": "Images of the product"
+      },
+      "ItemDto": {
+        "required": [
+          "articleId",
+          "quantity"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique identifier of the Item.",
+            "example": "2e5c9ba8-956e-476b-816a-49ee128a40c9"
+          },
+          "articleId": {
+            "type": "string",
+            "description": "Unique identifier of the Item.",
+            "example": "article1"
+          },
+          "name": {
+            "type": "string",
+            "description": "Name of the Item.",
+            "example": "notebook"
+          },
+          "quantity": {
+            "type": "number",
+            "description": "Quantity of articles of the Item.",
+            "example": 10
+          },
+          "price": {
+            "type": "number",
+            "description": "Total price of the Item.",
+            "example": 100.1
+          },
+          "unitPrice": {
+            "type": "number",
+            "description": "Unit Price of the Item.",
+            "example": 10.01
+          },
+          "availability": {
+            "$ref": "#/components/schemas/AvailabilityDto"
+          },
+          "product": {
+            "$ref": "#/components/schemas/ProductEntity"
+          },
+          "orderable": {
+            "type": "boolean",
+            "description": "Indicates whether an Item can be ordered",
+            "example": true
+          },
+          "messages": {
+            "type": "array",
+            "description": "The messages on the item",
+            "example": "{level=ERROR, message=Price for this item does not exist}",
+            "items": {
+              "$ref": "#/components/schemas/MessageDto"
+            }
+          }
+        },
+        "description": "List of the Items in the Cart."
+      },
+      "MessageDto": {
+        "type": "object",
+        "properties": {
+          "level": {
+            "type": "string",
+            "description": "Message level",
+            "example": "INFO",
+            "enum": [
+              "INFO",
+              "WARNING",
+              "ERROR"
+            ]
+          },
+          "message": {
+            "type": "string",
+            "description": "Message content",
+            "example": "Price for this item does not exist"
+          }
+        },
+        "description": "The messages on the cart.",
+        "example": "{level=ERROR, message=Certain items in the cart cannot be ordered}"
+      },
+      "ProductEntity": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique identifier of the Product.",
+            "example": "velox-shirt"
+          },
+          "name": {
+            "type": "string",
+            "description": "Name of the product.",
+            "example": "Velox Shirt"
+          },
+          "description": {
+            "type": "string",
+            "description": "Description of the product",
+            "example": "Very nice VELOX branded Polo-Shirt in size XL."
+          },
+          "longDescription": {
+            "type": "string",
+            "description": "Long description of the product",
+            "example": "Very nice VELOX branded Polo-Shirt in size XL made from cotton in various colours."
+          },
+          "images": {
+            "type": "array",
+            "description": "Images of the product",
+            "items": {
+              "$ref": "#/components/schemas/Image"
+            }
+          },
+          "choiceAttributes": {
+            "type": "array",
+            "description": "Attributes that change between variants",
+            "items": {
+              "$ref": "#/components/schemas/ChoiceAttributeObject"
+            }
+          },
+          "type": {
+            "type": "string",
+            "description": "Product Type",
+            "enum": [
+              "PRODUCT",
+              "VARIANT",
+              "MULTI_VARIANT_PRODUCT"
+            ]
+          },
+          "parentId": {
+            "type": "string",
+            "description": "Id of a parent MULTI_VARIANT_PRODUCT if a product type is VARIANT",
+            "example": "velox-polo-shirt"
+          }
+        },
+        "description": "Catalog information of an item."
+      },
+      "MonoResponseEntityCartDto": {
+        "type": "object"
+      },
+      "Pageable": {
+        "type": "object",
+        "properties": {
+          "page": {
+            "minimum": 0,
+            "type": "integer",
+            "format": "int32"
+          },
+          "size": {
+            "minimum": 1,
+            "type": "integer",
+            "format": "int32"
+          },
+          "sort": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "MonoResponseEntityVoid": {
+        "type": "object"
+      }
+    }
+  }
+}

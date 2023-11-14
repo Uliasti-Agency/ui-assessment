@@ -1,0 +1,37 @@
+@media only screen and (max-width: 576px) {
+  /*******************************************
+    Body
+  *******************************************/
+  .startPage .container.heading h1 {
+    vertical-align: center;
+    font-size: 2.2rem;
+  }
+
+  .startPage .mainContent {
+    font-size: 1.5rem;
+  }
+
+  .homeBody {
+    margin-top: 60px;
+  }
+
+  .paymentSubLabel {
+    display: none;
+  }
+
+  /*******************************************
+    Address
+  *******************************************/
+  .shipmentOption .radioRow,
+  .paymentOption .radioRow {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .shipmentOption .radioRow .col-3,
+  .paymentOption .radioRow .col-3 {
+    max-width: 100%;
+    padding-bottom: 10px;
+  }
+
+}
